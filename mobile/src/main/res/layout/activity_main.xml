@@ -20,35 +20,37 @@
 
     <Button
             android:text="Get location"
-            android:layout_width="184dp"
-            android:layout_height="64dp"
+            android:layout_width="141dp"
+            android:layout_height="59dp"
             android:id="@+id/location"
-            android:layout_below="@+id/fragment"
             android:layout_centerInParent="true"/>
     <EditText
-            android:layout_width="285dp"
-            android:layout_height="61dp"
+            android:layout_width="101dp"
+            android:layout_height="80dp"
             android:inputType="textPersonName"
-            android:text="Display Speed"
+            android:text="speed"
             android:ems="10"
-            android:layout_alignParentBottom="true" android:layout_marginBottom="166dp"
-            android:layout_centerHorizontal="true" android:id="@+id/speed"/>
+            android:id="@+id/speed"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="135dp"/>
     <Button
             android:text="+"
-            android:layout_width="106dp"
+            android:layout_width="87dp"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/speed" android:id="@+id/up" android:layout_below="@+id/speed"
-            android:layout_marginTop="-166dp"/>
+            android:id="@+id/up"
+            android:layout_toStartOf="@+id/location" android:layout_alignBaseline="@+id/speed"/>
     <Button
             android:text="-"
-            android:layout_width="109dp"
+            android:layout_width="73dp"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/speed" android:id="@+id/down" android:layout_below="@+id/speed"
-            android:layout_marginTop="-166dp"/>
+            android:id="@+id/down"
+            android:layout_toEndOf="@+id/location"
+            android:layout_alignBaseline="@+id/speed"/>
     <Button
             android:text="Callback"
-            android:layout_width="196dp"
-            android:layout_height="wrap_content" android:layout_alignParentBottom="true"
-            android:layout_marginBottom="44dp" android:layout_centerHorizontal="true" android:id="@+id/callback"/>
+            android:layout_width="156dp"
+            android:layout_height="60dp"
+            android:id="@+id/callback" android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="64dp"/>
 
 </RelativeLayout>
