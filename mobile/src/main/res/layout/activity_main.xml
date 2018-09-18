@@ -39,7 +39,7 @@
                     android:id="@+id/up"
                     android:layout_width="72dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@drawable/custom_ripple_color_primary_dark"
                     android:text="+"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
@@ -58,7 +58,7 @@
                     android:id="@+id/down"
                     android:layout_width="72dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@drawable/custom_ripple_color_primary_dark"
                     android:text="-"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
@@ -79,7 +79,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="@drawable/custom_ripple_color_accent"
                 android:text="Callback"
                 android:textColor="@android:color/white" />
 
@@ -89,7 +89,7 @@
                 android:layout_height="54dp"
                 android:layout_centerHorizontal="true"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/custom_ripple_color_primary"
                 android:text="Get location"
                 android:textColor="@android:color/white" />
         </LinearLayout>
