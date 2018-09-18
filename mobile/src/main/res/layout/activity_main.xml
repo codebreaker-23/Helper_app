@@ -1,54 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="0.65">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="201dp"
-                    android:id="@+id/fragment">
-
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:name="com.google.android.gms.maps.MapFragment"
-                  android:id="@+id/maps"
-                  android:layout_width="match_parent"
-                  android:layout_height="199dp"/>
+        <fragment
+            android:id="@+id/maps"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
-    <Button
-            android:text="Get location"
-            android:layout_width="184dp"
-            android:layout_height="64dp"
-            android:id="@+id/location"
-            android:layout_below="@+id/fragment"
-            android:layout_centerInParent="true"/>
-    <EditText
-            android:layout_width="285dp"
-            android:layout_height="61dp"
-            android:inputType="textPersonName"
-            android:text="Display Speed"
-            android:ems="10"
-            android:layout_alignParentBottom="true" android:layout_marginBottom="166dp"
-            android:layout_centerHorizontal="true" android:id="@+id/speed"/>
-    <Button
-            android:text="+"
-            android:layout_width="106dp"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/speed" android:id="@+id/up" android:layout_below="@+id/speed"
-            android:layout_marginTop="-166dp"/>
-    <Button
-            android:text="-"
-            android:layout_width="109dp"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/speed" android:id="@+id/down" android:layout_below="@+id/speed"
-            android:layout_marginTop="-166dp"/>
-    <Button
-            android:text="Callback"
-            android:layout_width="196dp"
-            android:layout_height="wrap_content" android:layout_alignParentBottom="true"
-            android:layout_marginBottom="44dp" android:layout_centerHorizontal="true" android:id="@+id/callback"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom_buttons">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+                <Button
+                    android:id="@+id/up"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="+"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/speed"
+                    android:layout_width="101dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="Speed"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/down"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="-"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/callback"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="Callback"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/location"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="Get location"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
