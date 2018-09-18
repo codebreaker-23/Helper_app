@@ -1,25 +1,26 @@
 package com.example.ayush.helper_app;
 
 
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.widget.Button;
-import android.support.v7.app.AppCompatActivity;
+import android.Manifest;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback{
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
+
+@RuntimePermissions
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
     public GoogleMap map;
 
@@ -48,28 +49,28 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         Button btnSendSMS = (Button) findViewById(R.id.location);
         btnSendSMS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SmsManager.sendSMS("+15555215556", "1"); //sending msg
+                MainActivityPermissionsDispatcher.sendSMSWithCheck(MainActivity.this, "+15555215556", "1"); //sending msg
             }
         });
 
         Button increase = (Button) findViewById(R.id.up);
         btnSendSMS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SmsManager.sendSMS("5556", "2"); //sending msg
+                MainActivityPermissionsDispatcher.sendSMSWithCheck(MainActivity.this, "5556", "2"); //sending msg
             }
         });
 
         Button decrease = (Button) findViewById(R.id.down);
         btnSendSMS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SmsManager.sendSMS("5556", "3"); //sending msg
+                MainActivityPermissionsDispatcher.sendSMSWithCheck(MainActivity.this, "5556", "3"); //sending msg
             }
         });
 
         Button call = (Button) findViewById(R.id.callback);
         btnSendSMS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SmsManager.sendSMS("5556", "5"); //sending msg
+                MainActivityPermissionsDispatcher.sendSMSWithCheck(MainActivity.this, "5556", "5"); //sending msg
             }
         });
     }
@@ -92,13 +93,13 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         map.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 
-    private void initMap(){
+    private void initMap() {
         MapFragment mapFragment = MapFragment.newInstance();
         getFragmentManager().beginTransaction().add(R.id.maps, mapFragment, "MAP").commitAllowingStateLoss();
         mapFragment.getMapAsync(this);
     }
 
-    private void setMap(){
+    private void setMap() {
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         map.setTrafficEnabled(true);
         map.setIndoorEnabled(true);
@@ -121,5 +122,34 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             return false;
         }
     }
+
+    @NeedsPermission(Manifest.permission.SEND_SMS)
+    public static void sendSMS(String phoneNumber, String message) {
+
+        /*PendingIntent sentToast = PendingIntent.getBroadcast(this, 0, new Intent("SMS_SENT"), 0);
+
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                switch (getResultCode()) {
+                    case Activity.RESULT_OK:
+                        Toast.makeText(context, "SMS sent success", Toast.LENGTH_SHORT).show();
+                        break;
+                    case android.telephony.SmsManager.RESULT_ERROR_NO_SERVICE:
+                        Toast.makeText(context, "Service is currently unavailable", Toast.LENGTH_SHORT).show();
+                        break;
+                    case android.telephony.SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                    case android.telephony.SmsManager.RESULT_ERROR_NULL_PDU:
+                    case android.telephony.SmsManager.RESULT_ERROR_RADIO_OFF:
+                        Toast.makeText(context, "sent failure", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        }, new IntentFilter("SMS_SENT")); */
+
+        android.telephony.SmsManager sms = android.telephony.SmsManager.getDefault();
+        sms.sendTextMessage(phoneNumber, null, message, null, null);
+    }
+
 
 }
